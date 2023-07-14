@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Development Assignment #1</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        body
+        {
+            background-color: darkgray;
+        }
+        p
+        {
+            color: rgb(6, 112, 182);
+            font-weight: bolder;
+        }
+        h2
+        {
+            color: rgb(6, 112, 182);
+            text-decoration: underline;
+        }
+        .guide
+        {
+            text-align: center;
+        }
+        .buttons
+        {
+            text-align: center;
+        }
+        .container
+        {
+            border: 6px double black;
+            background-color: rgba(189, 183, 107, 0.666);
+        }
+    </style>
+    
+    <body>
+        <div class="container">
+            <div class="guide">
+                <h1>Calculate Area, Perimeter, or Volume</h1>
+                <h2>Formula Guide:</h2>
+                <p>Area = Length * Width</p>
+                <p>Perimeter = (2 * Length) + (2 * Width)</p>
+                <p>Volume = Length * Width * Height</p>
+            </div>
+            <table border="3" style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <td>Length:</td>
+                <td>
+                    <input type="number" id="input1" name="input1" placeholder="Enter value">
+                </td>
+                </tr>
+                <tr>
+                    <td>Width:</td>
+                <td>
+                    <input type="number" id="input2" name="input2" placeholder="Enter value">
+                </td>
+                </tr>
+                <tr>
+                    <td>Height:</td>
+                <td>
+                    <input type="number" id="input3" name="input3" placeholder="Enter value">
+                </td>
+                </tr>
+                <tr>
+                    <td>Calculate:</td>
+                <td>
+                    <select id="calcSelection">
+                        <option value="area">Area</option>
+                        <option value="perimeter">Perimeter</option>
+                        <option value="volume">Volume</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td>Result:</td>
+                <td style="background-color: white;">
+                <div id="result"></div>
+                </td>
+                </tr>
+            </table>
+            <br>
+            <div class="buttons">    
+                <!-- buttons to calculate and reset -->
+                <input type="button" id="submit" onclick="calculate()" value="Submit">
+                <input type="button" id="reload" onclick="resetForm()" value="Clear">     
+            </div>
+            <br>
+        </div>
+        <script>
+            function calculate() //function to calculate either area, perimeter, or volume
+            {
+                //values from the input fields
+                var lValue = document.getElementById("input1").value;
+                var wValue = document.getElementById("input2").value;
+                var hValue = document.getElementById("input3").value;
+
+                //value from the dropdown menu
+                var calc = document.getElementById("calcSelection").value; 
+
+                //formulas to calculate area, perimeter, and volume
+                var calcArea = lValue * wValue;
+                var calcPerimeter = (2 * lValue) + (2 * wValue);
+                var calcVolume = lValue * wValue * hValue;
+
+                var resultDiv = document.getElementById("result");
+
+                //if statement with conditions to calculate selected option
+                if (calc == "area" && lValue != "" && wValue != "" && hValue == "")
+                {
+                    resultDiv.innerHTML = calcArea;
+                }
+                else if (calc == "perimeter" && lValue != "" && wValue != "" && hValue == "")
+                {
+                    resultDiv.innerHTML = calcPerimeter;
+                }
+                else if (calc == "volume" && lValue != "" && wValue != "" && hValue != "")
+                {
+                    resultDiv.innerHTML = calcVolume;
+                }
+                else
+                {
+                    //alert user for an invalid entry
+                    alert("Please refer to the formula guide and correct any value(s) and try again.");
+                }
+            }
+
+                function resetForm() //function to reset all values to default
+	            {
+			        location.reload();
+		        }
+        </script>        
+    </body>
+</html>
